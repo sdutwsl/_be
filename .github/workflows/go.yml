@@ -39,6 +39,5 @@ jobs:
         REMOTE_HOST: ${{ secrets.SDUTWSL_DOMAIN }}
         # Remote user
         REMOTE_USER: ${{ secrets.SDUTWSL_GITHUB_USER }}
-        SOURCE: _be
         # Target directory
         TARGET: ${{ secrets.SDUTWSL_APP_PATH }}
