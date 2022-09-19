@@ -1,0 +1,39 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+      
+    - name: ssh deploy
+      # You may pin to the exact commit or the version.
+      # uses: easingthemes/ssh-deploy@c711f2c3391cac2876bf4c833590077f02e4bcb8
+      uses: easingthemes/ssh-deploy@v2.2.11
+      with:
+        # Private Key
+        SSH_PRIVATE_KEY: ${{ secrets.SDUTWSL_SSH_SECRET }}
+        # Remote host
+        REMOTE_HOST: ${{ secrets.SDUTWSL_DOMAIN }}
+        # Remote user
+        REMOTE_USER: ${{ secrets.SDUTWSL_GITHUB_USER }}
+        # Target directory
+        TARGET: ${{ secrets.SDUTWSL_APP_PATH }}
