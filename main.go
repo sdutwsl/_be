@@ -19,7 +19,9 @@ func main() {
 		var search_string = c.Request.URL.Query().Get(QUERY_NAME)
 		c.String(200, GetDMHYMagnets(search_string))
 	})
-
+	//develop
+	// r.Run(":7003")
+	//product
 	r.Run(":19971")
 }
 
