@@ -12,6 +12,8 @@ import (
 //查询字符串名和动漫花园域名
 const QUERY_NAME = "dmhy_s"
 const DMHY_SEARCH_DOMAIN = "https://dmhy.anoneko.com/topics/list"
+const RELEASE_CONFIG = ":19971"
+const DEVELOP_CONFIG = ":7003"
 
 func main() {
 	r := gin.Default()
@@ -19,10 +21,12 @@ func main() {
 		var search_string = c.Request.URL.Query().Get(QUERY_NAME)
 		c.String(200, GetDMHYMagnets(search_string))
 	})
-	//develop
-	// r.Run(":7003")
-	//product
-	r.Run(":19971")
+	//release 使用不同的端口
+	if gin.Mode() == "release" {
+		r.Run(RELEASE_CONFIG)
+	} else {
+		r.Run(DEVELOP_CONFIG)
+	}
 }
 
 //获取动漫花园magnet链接
