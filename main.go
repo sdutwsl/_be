@@ -21,7 +21,7 @@ func main() {
 		var search_string = c.Request.URL.Query().Get(QUERY_NAME)
 		c.String(200, GetDMHYMagnets(search_string))
 	})
-	//release 使用不同的端口
+	//使用不同的端口
 	if gin.Mode() == "release" {
 		r.Run(RELEASE_CONFIG)
 	} else {
