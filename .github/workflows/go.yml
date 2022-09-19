@@ -33,11 +33,11 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.2.11
       with:
         # Private Key
-        SSH_PRIVATE_KEY: ${{ env.SDUTWSL_SSH_SECRET }}
+        SSH_PRIVATE_KEY: ${{ secrets.SDUTWSL_SSH_SECRET }}
         # Remote host
-        REMOTE_HOST: ${{ env.SDUTWSL_DOMAIN }}
+        REMOTE_HOST: ${{ secrets.SDUTWSL_DOMAIN }}
         # Remote user
-        REMOTE_USER: ${{ env.SDUTWSL_GITHUB_USER }}
+        REMOTE_USER: ${{ secrets.SDUTWSL_GITHUB_USER }}
         SOURCE: _be
         # Target directory
-        TARGET: ${{ env.SDUTWSL_APP_PATH }}
+        TARGET: ${{ secrets.SDUTWSL_APP_PATH }}
