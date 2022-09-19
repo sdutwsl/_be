@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//查询字符串名和动漫花园域名
 const QUERY_NAME = "dmhy_s"
 const DMHY_SEARCH_DOMAIN = "https://dmhy.anoneko.com/topics/list"
 
@@ -22,6 +23,7 @@ func main() {
 	r.Run(":7003")
 }
 
+//获取动漫花园magnet链接
 func GetDMHYMagnets(s string) string {
 	var req, err = http.NewRequest("GET", DMHY_SEARCH_DOMAIN, nil)
 	if err != nil {
