@@ -20,7 +20,7 @@ func main() {
 		c.String(200, GetDMHYMagnets(search_string))
 	})
 
-	r.Run(":7003")
+	r.Run(":19971")
 }
 
 //获取动漫花园magnet链接
