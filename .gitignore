@@ -2,3 +2,4 @@
 _be
 *.swp
 __debug_bin
+/be_config/be_config.go

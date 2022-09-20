@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
+
+	"_be/be_config"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +19,7 @@ const RELEASE_CONFIG = ":19971"
 const DEVELOP_CONFIG = ":7003"
 
 func main() {
+	fmt.Println(be_config.MYSQL_HOST)
 	r := gin.Default()
 	r.GET("/GetDMHYMagnets", func(c *gin.Context) {
 		var search_string = c.Request.URL.Query().Get(QUERY_NAME)
