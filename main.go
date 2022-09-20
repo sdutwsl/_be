@@ -2,7 +2,7 @@ package main
 
 import (
 	"_be/config"
-	"_be/service"
+	"_be/service/crawler"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +15,11 @@ func main() {
 	// response: 符合关键词的 magnet 的合集，以换行隔开
 	r.GET("/GetDMHYMagnets", func(c *gin.Context) {
 		var search_string = c.Request.URL.Query().Get("dmhy_s")
-		c.String(200, service.GetDMHYMagnets(search_string))
+		c.String(200, crawler.GetDMHYMagnets(search_string))
+	})
+
+	r.GET("/GetAllRecords", func(c *gin.Context) {
+		// ywq.GetAllRecords()
 	})
 
 	//使用不同的端口
