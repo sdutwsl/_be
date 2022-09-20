@@ -1,0 +1,11 @@
+package config
+
+//gin 相关
+const RELEASE_CONFIG = ":19971"
+const DEVELOP_CONFIG = ":7003"
+
+//mysql相关
+const MYSQL_HOST = "127.127.127.127"
+const MYSQL_PASS = "****"
+const MYSQL_USER = "test"
+const MYSQL_DB = "test"
