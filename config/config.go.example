@@ -1,11 +1,32 @@
 package config
 
+import "github.com/gin-gonic/gin"
+
 //gin 相关
-const RELEASE_CONFIG = ":19971"
-const DEVELOP_CONFIG = ":7003"
+var GIN_CONFIG = ""
 
 //mysql相关
-const MYSQL_HOST = "127.127.127.127"
-const MYSQL_PASS = "****"
-const MYSQL_USER = "test"
-const MYSQL_DB = "test"
+var MYSQL_HOST = ""
+var MYSQL_PASS = ""
+var MYSQL_USER = ""
+var MYSQL_DB = ""
+
+func init() {
+	if gin.Mode() == "release" {
+		//gin 相关
+		GIN_CONFIG = ":19971"
+		//mysql相关
+		MYSQL_HOST = "localhost"
+		MYSQL_PASS = "****"
+		MYSQL_USER = "sdutwsl"
+		MYSQL_DB = "my"
+	} else {
+		//gin 相关
+		GIN_CONFIG = ":7003"
+		//mysql相关
+		MYSQL_HOST = "localhost"
+		MYSQL_PASS = "****"
+		MYSQL_USER = "sdutwsl"
+		MYSQL_DB = "my_test"
+	}
+}
