@@ -39,3 +39,26 @@ func GetAllRecords() []YWQ {
 
 	return ret
 }
+
+func AddRecord() int {
+	var sql_source = fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=False", config.MYSQL_USER, config.MYSQL_PASS, config.MYSQL_HOST, config.MYSQL_DB)
+	var sql_query = "INSERT INTO ywq values()"
+	db, err := sql.Open("mysql", sql_source)
+	if err != nil {
+		db.Close()
+		return -1
+	}
+
+	result, err := db.Exec(sql_query)
+	if err != nil {
+		db.Close()
+		return -1
+	}
+
+	id, err := result.LastInsertId()
+	if err != nil {
+		db.Close()
+		return -1
+	}
+	return int(id)
+}

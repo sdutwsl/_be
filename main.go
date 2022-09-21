@@ -4,6 +4,7 @@ import (
 	"_be/config"
 	"_be/service/crawler"
 	"_be/service/ywq"
+	"fmt"
 
 	"encoding/json"
 
@@ -27,10 +28,11 @@ func main() {
 		c.JSON(200, string(json))
 	})
 
-	//使用不同的端口
-	if gin.Mode() == "release" {
-		r.Run(config.RELEASE_CONFIG)
-	} else {
-		r.Run(config.DEVELOP_CONFIG)
-	}
+	r.GET("/AddRecord", func(c *gin.Context) {
+		var id = ywq.AddRecord()
+		fmt.Println(id)
+		c.JSON(200, id)
+	})
+
+	r.Run(config.GIN_CONFIG)
 }
