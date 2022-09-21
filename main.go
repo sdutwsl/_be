@@ -3,6 +3,9 @@ package main
 import (
 	"_be/config"
 	"_be/service/crawler"
+	"_be/service/ywq"
+
+	"encoding/json"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +22,9 @@ func main() {
 	})
 
 	r.GET("/GetAllRecords", func(c *gin.Context) {
-		// ywq.GetAllRecords()
+		var rs = ywq.GetAllRecords()
+		var json, _ = json.Marshal(rs)
+		c.JSON(200, string(json))
 	})
 
 	//使用不同的端口
