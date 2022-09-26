@@ -4,16 +4,16 @@ import (
 	"_be/config"
 	"_be/service/crawler"
 	"_be/service/ywq"
+	"net/http"
 
-	"encoding/json"
-
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func RunApp() {
 
 	r := gin.Default()
-
+	r.Use(cors.Default())
 	// method: GET
 	// query: dmhy_s 需要搜索的关键词
 	// response: 符合关键词的 magnet 的合集，以换行隔开
@@ -26,16 +26,15 @@ func RunApp() {
 	// method: GET
 	// response: 所有的时间记录
 	// 获取所有的时间记录
-	r.GET("/GetAllRecords", func(c *gin.Context) {
+	r.POST("/GetAllRecords", func(c *gin.Context) {
 		var rs = ywq.GetAllRecords()
-		var json, _ = json.Marshal(rs)
-		c.JSON(200, string(json))
+		c.JSON(http.StatusOK, rs)
 	})
 
 	// method: GET
 	// response: 添加时间的记录的id
 	// 增加一条时间的id
-	r.GET("/AddRecord", func(c *gin.Context) {
+	r.POST("/AddRecord", func(c *gin.Context) {
 		var id = ywq.AddRecord()
 		c.JSON(200, id)
 	})
