@@ -14,6 +14,12 @@ func RunApp() {
 
 	r := gin.Default()
 	r.Use(cors.Default())
+
+	//
+	r.POST("/", func(c *gin.Context) {
+		c.String(200, "404 not found")
+	})
+
 	// method: GET
 	// query: dmhy_s 需要搜索的关键词
 	// response: 符合关键词的 magnet 的合集，以换行隔开
