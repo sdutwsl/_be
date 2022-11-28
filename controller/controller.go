@@ -16,7 +16,7 @@ func RunApp() {
 	r.Use(cors.Default())
 
 	//
-	r.POST("/", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.String(200, "404 not found")
 	})
 
